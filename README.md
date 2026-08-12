@@ -1,7 +1,7 @@
 ````markdown
 # BE Capstone Project
 
-## Project Title
+SMART ELECTROPLATING SYSTEM
 
 **Write the full title of your project here**
 
@@ -11,10 +11,10 @@
 
 | Sr. No. | Name of Student | Roll No. | Branch | Email ID |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
+| 1 | Arko Mukherjee | 14 | AUTOMATION AND ROBOTICS | 2023.arko.mukherjee@ves.ac.in |
+| 2 | Sanika Puranik | 23 | AUTOMATION AND ROBOTICS | 2023.sanika.puranik@ves.ac.in |
+| 3 | Archit Kothavade | 8 |  AUTOMATION AND ROBOTICS| 2023.archit.kothavade@ves.ac.in |
+| 4 | Athang Bhandarkar| 38 | AUTOMATION AND ROBOTICS | 2023.athang.bhandarkar@ves.ac.in |
 
 ---
 
@@ -339,7 +339,7 @@ Add images or videos of the working prototype.
 ![Prototype](images/prototype_photo.jpg)
 ```
 
-Video Link:
+Video Link: https://youtu.be/6FQ77SdycFc?feature=shared
 
 ```markdown
 [Project Demo Video](https://drive.google.com/your-video-link)
