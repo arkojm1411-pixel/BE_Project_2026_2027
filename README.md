@@ -3,9 +3,10 @@
 
 SMART ELECTROPLATING SYSTEM
 
-**Write the full title of your project here**
+SMART ELECTROPLATING SYSTEM 
 
----
+YT LINK- https://youtu.be/6FQ77SdycFc?feature=shared
+
 
 ## Team Details
 
@@ -20,99 +21,170 @@ SMART ELECTROPLATING SYSTEM
 
 ## Guide Details
 
-**Project Guide:**  
-**Department:** Automation and Robotics  
-**Institute:** VESIT, Mumbai  
+Project Guide: Prasad Godse sir
+Department:Automation and Robotics  
+Institute:VESIT, Mumbai  
 
 ---
 
 ## Problem Statement
 
-Write a clear problem statement here.
-
-Example:
-
-> The aim of this project is to design and develop a system that solves the problem of __________ by using __________ technology.
-
+Conventional electroplating requires frequent manual monitoring of pH, temperature, electrolyte purity, plating current, and bath level, which can lead to inconsistent coating quality.
+Changes in pH and accumulation of impurities can affect coating thickness, adhesion, and surface finish.
+The proposed system uses an ESP32-based control system for real-time monitoring of critical process parameters.
+It automatically controls boric-acid dosing .
+The system also provides safety monitoring, alarms, HMI/IoT data logging, and process tracking.
+This aims to reduce manual intervention and improve the consistency, reliability, and quality of electroplating.
 ---
 
 ## Abstract
 
-Write a short summary of the project in 150–250 words.
+Conventional electroplating processes require continuous manual monitoring and adjustment of critical parameters such as pH, temperature, electrolyte purity, plating current, and bath level. Variations in these parameters and the accumulation of impurities can result in inconsistent coating thickness, poor surface finish, and reduced coating quality. This project proposes a Smart Electroplating System that automates process monitoring and selected corrective actions to improve plating consistency and reliability.
 
-The abstract should include:
+The proposed system uses an ESP32 microcontroller as the central control unit, integrated with sensors for monitoring pH, temperature, liquid level, flow, and electrical parameters. Based on the monitored conditions, the system controls boric-acid dosing for pH correction and an automated pump-based filtration system for electrolyte maintenance. Safety interlocks and alarms are incorporated to detect abnormal conditions, while an HMI/IoT interface enables real-time visualization and data logging.
 
-- Background of the problem
-- Proposed solution
-- Technology used
-- Expected outcome
-- Application area
+The expected outcome is a reduction in manual intervention, improved process stability, and more consistent electroplating quality. The system can be applied in industrial metal finishing, automotive components, electronics, manufacturing, and other electroplating industries where reliable and automated process control is required.
 
 ---
 
 ## Objectives
 
-1. To study the existing problem and available solutions.
-2. To design a suitable hardware/software/system architecture.
-3. To implement the proposed solution.
-4. To test and validate the system.
-5. To document and publish the project work.
-
+Objectives
+1.To study the existing electroplating process, its limitations, and available automation solutions.
+2.To design an ESP32-based hardware and software architecture for real-time monitoring and control of the electroplating process.
+3.To implement pH monitoring and automated dosing, electrolyte filtration, temperature/level monitoring, and process safety controls.
+4.To test and validate the system for process stability, reduced manual intervention, and improved coating consistency.
+5.To develop HMI/IoT-based monitoring and data logging and document the complete project for future industrial applications.
 ---
 
 ## Scope of the Project
 
-Mention what the project will cover.
+The project will cover:
 
-Example:
-
-- Design and development of prototype
-- Hardware implementation
-- Software/mobile/web interface
-- Data collection and testing
-- Performance analysis
-
----
+1.Design and development of a smart electroplating prototype using ESP32 as the main controller.
+2.Hardware implementation of pH, temperature, level, flow, and electrical parameter monitoring.
+3.pH correction through pump and dosing control.
+4.HMI/IoT interface for real-time monitoring, alarms, and data logging.
+5.System testing and data collection under controlled operating conditions.
+6.Performance analysis based on process stability, filtration effectiveness, manual intervention, and coating consistency.
 
 ## Existing System
 
-Describe the currently available system or method.
+Conventional electroplating systems generally rely on manual monitoring and periodic adjustment of parameters such as pH, temperature, electrolyte condition, plating current, and bath level. Chemical dosing are often performed manually or at fixed intervals, depending on operator experience.
 
-Mention its limitations:
-
-- High cost
-- Low accuracy
-- Manual process
-- Lack of automation
-- Poor scalability
-- Limited accessibility
+Limitations
+High manual intervention for monitoring and maintaining bath conditions.
+Limited real-time monitoring of critical parameters.
+Inconsistent coating quality due to variations in pH, temperature, impurities, and current.
+Delayed detection of abnormal conditions, which can affect the plating process.
+Chemical dosing can result in over- or under-treatment.
+Limited data logging and process traceability for analyzing coating performance.
+Difficulty in scaling and integrating automation into smaller conventional plating setups.
 
 ---
 
 ## Proposed System
 
-Describe your proposed solution.
+Proposed System
 
-Include:
+The proposed system is a Smart Electroplating System designed to automate the monitoring and maintenance of critical electroplating parameters. An ESP32 microcontroller continuously collects data from sensors and controls the required process operations based on predefined conditions.
 
-- Main idea
-- How it works
-- Major components
-- Expected benefits
+Main Idea
 
+To develop an automated electroplating system that provides real-time monitoring, automatic electrolyte filtration, pH correction, and safety monitoring to improve coating consistency and reduce manual intervention.
+
+How It Works
+Sensors continuously monitor pH, temperature, liquid level, flow, and electrical parameters.
+The ESP32 processes the sensor data and compares it with the required operating conditions.
+Based on the pH condition, the system controls boric-acid dosing.
+Safety interlocks detect conditions such as low level, abnormal temperature, excessive current, or loss of flow and generate alarms or stop the relevant actuator.
+An HMI/IoT interface displays and records process parameters and system status.
+
+Major Components
+ESP32 microcontroller
+pH, temperature and turbidity sensors
+Level and flow sensors
+DC plating power supply/rectifier
+Circulation pump and filtration unit
+Boric-acid dosing pump
+Current/voltage monitoring
+HMI/display and IoT data logging
+Alarm and safety-interlock system
+
+Expected Benefits
+Reduced manual monitoring and intervention
+Improved electrolyte condition and process stability
+More consistent coating quality
+Early detection of process abnormalities
+Automated filtration and pH correction
+Real-time monitoring and data logging
+Better scope for industrial automation and scalability
 ---
 
 ## System Architecture
 
-Add block diagram or system architecture image here.
+                  ┌──────────────────────┐
+                  │   AC Supply / DC     │
+                  │   Plating Rectifier  │
+                  └──────────┬───────────┘
+                             │
+                       DC Plating Power
+                             │
+                    ┌────────┴────────┐
+                    │ Electroplating  │
+                    │      Bath       │
+                    │ Anode + Cathode │
+                    └────────┬────────┘
+                             │
+              ┌──────────────┼──────────────┐
+              │              │              │
+              ▼              ▼              ▼
+        ┌───────────┐  ┌────────────┐  ┌────────────┐
+        │ pH Sensor │  │Temperature │  │ Level/Flow │
+        │           │  │   Sensor   │  │   Sensor   │
+        └─────┬─────┘  └──────┬─────┘  └──────┬─────┘
+              │               │               │
+              └───────────────┼───────────────┘
+                              ▼
+                       ┌──────────────┐
+                       │    ESP32     │
+                       │  Controller  │
+                       └──────┬───────┘
+                              │
+             ┌────────────────┼────────────────┐
+             │                │                │
+             ▼                ▼                ▼
+      ┌────────────┐   ┌────────────┐   ┌──────────────┐
+      │  Dosing    │   │  Current/  │   │ HMI / IoT    │
+      │   Pump     │   │  Voltage   │   │ Monitoring   │
+      └─────┬──────┘   │ Monitoring │   └──────────────┘
+            │          └────────────┘
+            ▼
+      ┌────────────┐
+      │ Boric Acid │
+      │   Dosing   │
+      └─────┬──────┘
+            │
+            ▼
+     ┌──────────────┐
+     │ Electroplating│
+     │     Bath      │
+     └──────────────┘
 
-```markdown
-![System Architecture](images/system_architecture.png)
-````
-
+        Safety Monitoring & Alarm
+                 ▲
+                 │
+              ESP32
 Briefly explain the architecture.
 
----
+1.Power Supply: The AC supply is converted into controlled DC power using a rectifier for the electroplating process.
+2.Electroplating Bath: The DC supply is connected to the nickel anode and workpiece (cathode) to perform electroplating.
+3.Sensor Monitoring: pH, temperature, level, flow, current, and voltage are continuously monitored to track the condition of the process.
+4.ESP32 Controller: The ESP32 receives sensor data, processes it, and compares the values with the predefined operating conditions.
+pH Control: If the pH deviates from the required range, the ESP32 controls the boric-acid dosing pump to correct the electrolyte condition.
+5.Safety Control: Level, flow, temperature, and electrical parameters are monitored to detect abnormal conditions and activate alarms or protective actions.
+6.HMI/IoT Monitoring: The process parameters, actuator status, and alarms are displayed on the HMI/IoT interface and can be recorded for further analysis.
+7.Continuous Operation: The system continuously repeats the monitor → analyze → control → monitor cycle to maintain stable electroplating conditions.
 
 ## Hardware Requirements
 
