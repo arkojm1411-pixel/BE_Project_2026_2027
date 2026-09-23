@@ -1,4 +1,4 @@
-````markdown
+
 # BE Capstone Project
 
 SMART ELECTROPLATING SYSTEM
@@ -225,7 +225,7 @@ Example:
 
 Explain the step-by-step approach.
 
-1. Literature survey
+1. industrial visit
 2. Problem identification
 3. Requirement analysis
 4. System design
@@ -240,14 +240,13 @@ Explain the step-by-step approach.
 
 | Week / Month | Task Planned          | Status                            |
 | ------------ | --------------------- | --------------------------------- |
-| Week 1       | Problem finalization  | Pending / In Progress / Completed |
-| Week 2       | Literature survey     |                                   |
-| Week 3       | Requirement analysis  |                                   |
-| Week 4       | System design         |                                   |
-| Week 5       | Prototype development |                                   |
-| Week 6       | Testing               |                                   |
-| Week 7       | Documentation         |                                   |
-| Week 8       | Paper writing         |                                   |
+| Week 1       | Problem finalization  | Completed                         |
+| Week 2       | Requirement analysis  | Completed                         |
+| Week 3       | System design         | Completed                         |
+| Week 4       | Prototype development | In progess                        |
+| Week 5       | Testing               | In progess                        |
+| Week 6       | Documentation         | pending                           |
+| Week 7       | Paper writing         | pending                           |
 
 ---
 
@@ -266,21 +265,7 @@ Students must update this section every week.
 | Week 7 |      |                |                            |                     |                    |
 | Week 8 |      |                |                            |                     |                    |
 
----
 
-## Design Files
-
-Upload and link all design files here.
-
-| File Type       | File Name / Link | Description |
-| --------------- | ---------------- | ----------- |
-| CAD Model       |                  |             |
-| Circuit Diagram |                  |             |
-| PCB Design      |                  |             |
-| Flowchart       |                  |             |
-| Simulation File |                  |             |
-
----
 
 ## Circuit Diagram
 
@@ -294,7 +279,58 @@ Add circuit diagram image here.
 
 ## Flowchart / Algorithm
 
-Add flowchart image here.
+                  ┌──────────────────────┐
+                  │   AC Supply / DC     │
+                  │   Plating Rectifier  │
+                  └──────────┬───────────┘
+                             │
+                       DC Plating Power
+                             │
+                    ┌────────┴────────┐
+                    │ Electroplating  │
+                    │      Bath       │
+                    │ Anode + Cathode │
+                    └────────┬────────┘
+                             │
+              ┌──────────────┼──────────────┐
+              │              │              │
+              ▼              ▼              ▼
+        ┌───────────┐  ┌────────────┐  ┌────────────┐
+        │ pH Sensor │  │Temperature │  │ Level/Flow │
+        │           │  │   Sensor   │  │   Sensor   │
+        └─────┬─────┘  └──────┬─────┘  └──────┬─────┘
+              │               │               │
+              └───────────────┼───────────────┘
+                              ▼
+                       ┌──────────────┐
+                       │    ESP32     │
+                       │  Controller  │
+                       └──────┬───────┘
+                              │
+             ┌────────────────┼────────────────┐
+             │                │                │
+             ▼                ▼                ▼
+      ┌────────────┐   ┌────────────┐   ┌──────────────┐
+      │  Dosing    │   │  Current/  │   │ HMI / IoT    │
+      │   Pump     │   │  Voltage   │   │ Monitoring   │
+      └─────┬──────┘   │ Monitoring │   └──────────────┘
+            │          └────────────┘
+            ▼
+      ┌────────────┐
+      │ Boric Acid │
+      │   Dosing   │
+      └─────┬──────┘
+            │
+            ▼
+     ┌──────────────┐
+     │Electroplating│
+     │    Bath      │
+     └──────────────┘
+
+        Safety Monitoring & Alarm
+                 ▲
+                 │
+               ESP32
 
 ```markdown
 ![Flowchart](images/flowchart.png)
