@@ -350,91 +350,276 @@ Add circuit diagram image here.
 
 ## Implementation Details
 
-Explain the actual implementation of the project.
 
 ### Hardware Implementation
 
-Write details about connections, components, power supply, sensors, actuators, PCB, enclosure, etc.
+1. Hardware Implementation
+A. Electroplating Tank
+Tank size: 400 × 300 × 200 mm
+Working electrolyte: Nickel plating solution
+Nickel anode connected to the positive terminal of the DC supply
+Cathode/workpiece connected to the negative terminal
+Sensors are mounted around the tank for process monitoring.
+B. Temperature Control
+
+Hardware:
+
+Temperature sensor — PT100/thermocouple depending on your selected controller
+Digital temperature controller
+Heating element
+SSR/relay
+Electrolyte tank
+
+Working:
+
+Temperature Sensor → Temperature Controller → SSR/Relay → Heater
+
+The sensor continuously measures bath temperature. When the temperature falls below the setpoint, the controller activates the heater. Once the setpoint is reached, heating is reduced/switched off.
+
+C. Voltage & Current Monitoring
+
+Hardware:
+
+DC power supply
+Voltage sensor/module
+Current sensor/module
+ESP32
+Display
+
+Basic arrangement:
+
+DC Supply → Voltage/Current Measurement → Electroplating Cell
+
+The ESP32 acquires the voltage and current values and displays/records them.
+
+These values can also be used to identify abnormal operating conditions such as excessive current or voltage fluctuations.
+
+D. pH Monitoring
+
+Hardware:
+
+pH electrode/probe
+pH sensor/transmitter/interface module
+ESP32
+Electrolyte tank
+Display
+
+Connection:
+
+pH Probe → pH Interface Module → ESP32 → Display
+
+The pH probe measures the electrolyte condition. The signal-conditioning/interface module converts the probe signal into a form that the ESP32 can read.
+
+For your project, the actual pH values obtained during calibration/testing should be recorded experimentally rather than assumed.
+
+E. Solenoid Valve System
+
+You have two solenoid valves:
+
+Solenoid Valve 1 – Boric Acid Dosing
+
+Connected between the boric-acid reservoir and electrolyte tank.
+Used to introduce boric acid when required.
+
+Solenoid Valve 2 – Electrolyte Outlet
+
+Connected to the electrolyte discharge line.
+Used to outlet/discharge electrolyte. F. ESP32 Control Unit
+
+The ESP32 acts as the main controller.
+
+It receives:
+
+Temperature information
+pH measurement
+Voltage measurement
+Current measurement
+Level/status signals
+Potential coating-quality measurement
+
+And controls:
+
+Solenoid Valve 1
+Solenoid Valve 2
+Heater/control output
+Display/monitoring interface
+Alarm indicators
 
 ### Software Implementation
 
-Write details about code structure, libraries used, algorithms, communication protocols, database, app, cloud, etc.
+2. Software Implementation
+A. ESP32 Programming
+
+The main software can be developed using:
+
+Arduino IDE + Embedded C/C++
+
+The program will:
+
+Initialize all sensors and outputs.
+Read sensor values.
+Convert raw sensor signals into engineering values.
+Compare measurements with setpoints/limits.
+Operate actuators accordingly.
+Display the current process status.
+Repeat the monitoring cycle continuously.
+
+Basic software flow:
+
+START
+  ↓
+Initialize ESP32
+  ↓
+Initialize Sensors
+  ↓
+Read Temperature
+  ↓
+Read pH
+  ↓
+Read Voltage & Current
+  ↓
+Check Process Conditions
+  ↓
+Control Heater / Solenoid Valves
+  ↓
+Display Parameters
+  ↓
+Check Alarm Conditions
+  ↓
+Repeat
+3. Temperature Control Software
+
+You can implement a simple control algorithm:
+
+Read Temperature
+       ↓
+Temperature < Setpoint?
+    ↙          ↘
+  YES           NO
+   ↓             ↓
+Heater ON     Heater OFF
+
+If you are using a commercial temperature controller, the temperature-control algorithm itself can remain inside that controller, while the ESP32 only monitors the temperature.
+
+4. pH Control Software
+
+Your system can use threshold-based control:
+
+Read pH
+   ↓
+Compare with allowable range
+   ↓
+Abnormal?
+ ↙       ↘
+YES       NO
+ ↓         ↓
+Control   Keep valves
+valves    in normal state
+
+For your boric-acid-only system, the software should not be written as a conventional acid/base dosing system. It should specifically account for:
+
+pH measurement → control decision → boric acid dosing / electrolyte outlet → re-measurement
+
+The exact pH limits should come from the nickel-plating chemistry you're using and your experimentally established operating range.
+
+5. Voltage & Current Software
+
+The ESP32 periodically reads the measurement modules:
+
+ADC Reading
+     ↓
+Calibration/Conversion
+     ↓
+Voltage / Current Value
+     ↓
+Display
+     ↓
+Data Logging / Alarm
+
+You can also calculate electrical power:
+
+P = V × I
+
+where:
+
+P = electrical power
+V = voltage
+I = current
+
+This gives you another useful parameter for your project analysis.
+
+6. Coating Quality Software
+
+For the eddy-current-based coating measurement, the software architecture can be:
+
+Eddy Current Sensor
+        ↓
+Signal Conditioning
+        ↓
+ADC
+        ↓
+ESP32
+        ↓
+Calibration Curve
+        ↓
+Estimated Coating Thickness
+        ↓
+Quality Status
+
+You would first need experimental calibration using samples with known coating thicknesses. The ESP32 can then use the resulting calibration relationship to estimate coating thickness.
+
+7. Data Display / Monitoring
+
+For the final system, you can have a simple display showing:
+
+Parameter	Display
+Temperature	°C
+pH	pH value
+Voltage	V
+Current	A
+Coating thickness	µm
+Anode health	% / status
+Valve status	ON/OFF
+
+You could use either an OLED/LCD connected to the ESP32 or a computer/mobile dashboard if you want remote monitoring.
+
+8. Hardware vs Software — PPT-Friendly Summary
+Hardware	Software
+Electroplating tank	Arduino IDE
+Nickel anode & cathode	Embedded C/C++
+Temperature sensor	Sensor-reading programs
+Temperature controller	Temperature control logic
+Heater	pH monitoring algorithm
+pH sensor	Voltage/current conversion
+Voltage sensor	Current monitoring
+Current sensor	Solenoid control logic
+Eddy-current sensor	Coating-thickness calculation
+ESP32	Alarm/threshold logic
+Solenoid valves	Data display
+Relay/MOSFET drivers	Data logging
+Display	Calibration algorithms
+DC power supply	System integration
+Overall implementation
+
+Hardware layer:
+
+Sensors + Electroplating Cell + ESP32 + Drivers + Valves + Heater + Display
+
+Software layer:
+
+Sensor acquisition + Calibration + Monitoring + Decision Logic + Actuator Control + Display/Data Logging
 
 ---
 
-## Code Structure
 
-```text
-BE-Capstone-Project/
-│
-├── README.md
-├── docs/
-│   ├── literature_survey.md
-│   ├── project_report.pdf
-│   └── presentation.pptx
-│
-├── hardware/
-│   ├── circuit_diagram.png
-│   ├── pcb_design/
-│   └── cad_model/
-│
-├── software/
-│   ├── src/
-│   ├── include/
-│   └── tests/
-│
-├── images/
-│   ├── system_architecture.png
-│   ├── prototype_photo.jpg
-│   └── results.png
-│
-└── references/
-    └── papers/
-```
-
----
-
-## How to Run the Project
-
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/username/project-name.git
-```
-
-### Step 2: Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-or mention specific software/library installation steps.
-
-### Step 3: Upload / Run the Code
-
-```bash
-python main.py
-```
-
-or
-
-```bash
-arduino-cli upload -p COMx --fqbn board_name
-```
-
-### Step 4: Observe the Output
-
-Mention the expected output of the project.
-
----
 
 ## Testing and Results
 
-| Test No. | Test Description | Expected Result | Actual Result | Status      |
-| -------- | ---------------- | --------------- | ------------- | ----------- |
-| 1        |                  |                 |               | Pass / Fail |
-| 2        |                  |                 |               | Pass / Fail |
-| 3        |                  |                 |               | Pass / Fail |
+| Test No. | Test Description       | Expected Result                           | Actual Result | Status      |
+| -------- | ----------------       | ---------------                           | ------------- | ----------- |
+| 1        | Temperature loop check | Relay response according to set point     | Working       | PASS        |
+| 2        | Current loop check     | Current module working according to input | Working       | PASS        |               
+| 3        | pH Loop check          | Solenoid valve on/off - acid dosing       | Working       | PASS        |
 
 ---
 
