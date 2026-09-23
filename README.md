@@ -188,22 +188,22 @@ pH Control: If the pH deviates from the required range, the ESP32 controls the b
 
 ## Hardware Requirements
 
-| Sr. No. | Component | Specification | Quantity | Purpose |
-| ------- | --------- | ------------- | -------- | ------- |
-| 1       |           |               |          |         |
-| 2       |           |               |          |         |
-| 3       |           |               |          |         |
-| 4       |           |               |          |         |
-
----
-
+| Sr. No. | Component                 | Specification            | Quantity | Purpose                     |
+| ------- | ---------                 | -------------            | -------- | -------                     |
+| 1       | Temperature sensor        | PT 100 RTD               | 1        | Sensing temperature         |
+| 2       | Temperature Controller    | Range -50 to 110 degree  | 1        | on off controller for heater|
+| 3       | Relay                     | 5A relay                 | 1        | on off action               |
+| 4       | pH probe                  | hydrogen bulb            | 1        | pH sensing                  |
+| 5       | Current sensor            | ACS 712                  | 1        | sensing current             |
+| 6       | Current sensor Module     | ACS 712 Current module   | 1        | Measuring currrent          |
+| 7       | voltage sensor module     |                          | 1        | Measuring voltage           |
+| 8       | ESP 32                    |                          | 1        | Microcontroller            
 ## Software Requirements
 
-| Sr. No. | Software / Tool | Version | Purpose |
-| ------- | --------------- | ------- | ------- |
-| 1       |                 |         |         |
-| 2       |                 |         |         |
-| 3       |                 |         |         |
+| Sr. No. | Software / Tool | Version | Purpose         |
+| ------- | --------------- | ------- | -------         |
+| 1       | Aurdino IDE     | 1.8.9   | Calculating AHI |
+
 
 ---
 
@@ -213,12 +213,11 @@ Mention technologies used in the project.
 
 Example:
 
-* Embedded C / Python / JavaScript
-* Arduino / STM32 / ESP32 / Raspberry Pi
-* ROS / MATLAB / Simulink
+* Arduino C / C++
+* Arduino IDE / ESP32 
 * Machine Learning / Computer Vision
-* IoT / Cloud / Mobile App
-* PCB Design / CAD Design
+* 
+* 
 
 ---
 
